@@ -1,17 +1,14 @@
-let Usuario= prompt("Hola ingresa tu nombre para logearte");
-alert("Bienvenido/a " + Usuario);
-
 const Mascotas = [
-    { id: 1, nombre: "tito", edad: "cachorro", genero: "macho", tipo: "perro"},
-    { id: 2, nombre: "juana", edad: "adulto", genero: "hembra", tipo: "perro"},
-    { id: 3, nombre: "roco", edad: "adulto mayor", genero: "macho", tipo: "perro"},
-    { id: 4, nombre: "pelusa", edad: "cachorro", genero: "hembra", tipo: "gato"},
-    { id: 5, nombre: "luna", edad: "adulto", genero: "hembra", tipo: "gato"},
-    { id: 6, nombre: "atom", edad: "cachorro", genero: "macho", tipo: "gato"},
+    { nombre: "tito", edad: "cachorro", genero: "macho", tipo: "perro"},
+    { nombre: "juana", edad: "adulto", genero: "hembra", tipo: "perro"},
+    { nombre: "roco", edad: "adulto mayor", genero: "macho", tipo: "perro"},
+    { nombre: "pelusa", edad: "cachorro", genero: "hembra", tipo: "gato"},
+    { nombre: "luna", edad: "adulto", genero: "hembra", tipo: "gato"},
+    { nombre: "atom", edad: "cachorro", genero: "macho", tipo: "gato"},
 ];
-console.table(Mascotas);
+console.log(Mascotas);
 
-function agregar (id, nombre, edad, genero, tipo){
+function animales (id, nombre, edad, genero, tipo){
     this.id = id;
    this.nombre = nombre;
    this.edad = edad;
@@ -22,15 +19,13 @@ function agregar (id, nombre, edad, genero, tipo){
 
 let index= prompt ("¡Hola, Bienvenido a PawMatch! \n ¿Qué le gustaría realizar? Ingresá la opción que corresponda \n 1 - Adoptar una mascota \n 2 - Buscar una mascota \n 3 - Publicar una mascota \n 0 - Salir");
 
-while (index != "0"){
-
-    switch(index){
+ switch(index){
 
         case "1": 
 
-            alert("Ellos son los que estan esperando un hogar: \n Tito: Perro cachorro \n Juana: Perra adulta \n Roco: Perro adulto mayor \n Pelusa: Gata cachorra \n Luna: Gata adulta \n Atom: Gato cachorro");
+            let adoptado=alert(prompt("Ellos son los que estan esperando un hogar: \n Tito: Perro cachorro \n Juana: Perra adulta \n Roco: Perro adulto mayor \n Pelusa: Gata cachorra \n Luna: Gata adulta \n Atom: Gato cachorro \n\n Ingresa el nombre correspondiente a la mascota que deseas adoptar \n 0 - Salir"));
 
-            let adoptado=alert(prompt("Ingresa el nombre correspondiente a la mascota que deseas adoptar en minúscula \n 0 - Salir"));
+            //No se porque me devuelve la respuesta en un alert y porque si pongo adoptado en el alert en vez de decirme lo que escribio el usuario me da indefinido
 
             if (adoptado != "0"){
 
@@ -40,7 +35,7 @@ while (index != "0"){
 
                 let mailadoptante= prompt("Por favor ingresa tu emal");
 
-                alert("En minutos te llegará el formulario al mail " + mailadoptante);
+                alert("Perfecto " + adoptante + " en minutos te llegará el formulario al mail " + mailadoptante);
 
                 console.log( "El adoptante es " + adoptante + " y su email es " + mailadoptante);
             
@@ -54,13 +49,46 @@ while (index != "0"){
 
         case "2": 
 
-            let buscar= prompt("Ingresa que estás buscando \n Nosotros te ayudamos, las palabras clave pueden ser Perro, Gato, Cachorro, Adulto, Adulto mayor, Hembra, Macho o si buscas a tu mascota, su nombre, por favor ingresa la palabra en minúsculas");
+            let busqueda= prompt("Indique por que categoría desea filtrar la búsqueda ingresá la opción que corresponda \n 1 - Por nombre \n 2 - Por edad \n 3 - Por género \n 4 - Por tipo \n 0 - Salir")
 
-            const resultado = Mascotas.filter ((el) =>
-            el.includes(buscar))
+            if (busqueda == "1"){
 
-            console.log("Estos son los resultados de tu búsqueda " + resultado);
+                let filtro = prompt("Indique el nombre de la mascota en minúsculas");
 
+                let resultados = Mascotas.filter(animal => animal.nombre.includes(filtro));
+
+                //No me salió poner los resultados en un alert, me figuraban como objetos
+
+                console.log(resultados);
+
+            } else if (busqueda == "2") {
+
+                let filtro = prompt("Indique la edad de la mascota que desea adoptar \n (cachorro - adulto o adulto mayor)");
+
+                let resultados = Mascotas.filter(animal => animal.edad.includes(filtro));
+
+                console.log(resultados);
+
+            } else if (busqueda == "3") {
+
+                let filtro = prompt("Indique el género de la mascota que desea adoptar \n (hembra o macho)");
+
+                let resultados = Mascotas.filter(animal => animal.genero.includes(filtro));
+
+                console.log(resultados);
+                    
+            } else if (busqueda == "4") {
+
+                 let filtro = prompt("Indique el tipo de mascota que desea adoptar \n (perro o gato)");
+
+                let resultados = Mascotas.filter(animal => animal.tipo.includes(filtro));
+
+                console.log(resultados);
+                    
+            } else {
+                alert("Hasta la próxima, te esperamos!");
+            }
+            
         break;
 
         case "3":
@@ -89,7 +117,7 @@ while (index != "0"){
         break;
     }
 
-}
+
 
 
 
