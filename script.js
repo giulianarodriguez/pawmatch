@@ -1,74 +1,102 @@
-let index= prompt ("¡Hola, Bienvenido a PawMatch! \n ¿Qué mascota te gustaría adoptar? Ingresá la opción que corresponda \n 1 - Adoptar un perro \n 2 - Adoptar un gato \n 0 - Salir");
+// Esta vez opte por hacer esta parte de la página que la vez pasada me quedo colgada y voy a intentar unir todo para la proxima pre entrega usando los elementos en la tienda y las fotos de las mascotas, mas visual y mas lindo
 
-if (index != "0") {
+
+//Se que todavia no esta terminado y tiene errores, pero por si lo ves antes de que lo arregle/ termine prefiero que lo veas asi y me digas que es lo que esta mal o le falta 
+
+
+function Producto ( nombre, precio, stock) {
+        this.nombre = nombre;
+        this.precio = parseFloat (precio);
+        this.stock = parseFloat (stock);
+}
+
+function filtrarPorNombre (arr, filtro){
+    return arr.filter((productos) =>{
+        return productos.nombre.includes(filtro);
+    });
+}
+
+
+const productos = [ 
+    {nombre: "Collares", precio: 1600, stock: 50},
+    {nombre: "Piedritas para gato", precio: 900, stock: 60},
+    {nombre: "Camas para perros", precio: 4200, stock: 20},
+    {nombre: "Comederos", precio: 1400, stock: 26},
+];
+
+
+let index= prompt ("¡Hola, Bienvenido a PawMatch! \n ¿Qué le gustaría realizar? Ingresá la opción que corresponda \n 1 - Ver productos \n 2 - Buscar un producto \n 0 - Salir");
+
+while (index != "0") { 
 
     switch (index) {
         case "1": 
-        let perroAdoptado= prompt("Ellos estan esperando un hogar: \n 1 - Roco - cachorro mediano \n 2 - Pepa - adulta pequeña \n Ingresa el número que le corresponde para adoptarlo o 0 para salir");
-        
-            switch (perroAdoptado){
+        let tienda= prompt(" 1 - Collares $1600 \n 2 - Piedritas para gato $900 \n 3- Camas para perros $4200 \n 4- Comederos $1400 \n  Ingresa el número que corresponde al producto o 0 para salir");
+
+        while (tienda !="0"){
+            switch (tienda){
                 case "1":
-                    alert("Gracias! Nos vamos a comunicar con vos para completar el formulario y terminar la adopción");
-                    let adoptanteRoco=prompt("Por favor indicanos tu nombre");
-                    let mailRoco= prompt("Por favor ingresa tu emal");
-                    alert("En minutos te llegará el formulario al mail " + mailRoco);
-                    console.log( "El adoptante es " + adoptanteRoco + " y su email es " + mailRoco);   
-                break;
-
+                    cantidad = parseInt (prompt("¿Cuántos collares desea llevar?")); 
+                    alert("Se agregaron " + cantidad + " collares al carrito");
+                    if (resultado <= cantidad) {
+                        total += (cantidad * collares.precio);
+                        alert("El valor de su carrito es de $" + total);
+                    }
+                break;  
                 case "2":
-                    alert("Gracias! Nos vamos a comunicar con vos para completar el formulario y terminar la adopción");
-                    let adoptantePepa=prompt("Por favor indicanos tu nombre");
-                    let mailPepa= prompt("Por favor ingresa tu emal");
-                    alert("En minutos te llegará el formulario al mail " + mailPepa);
-                    console.log( "El adoptante es " + adoptantePepa + " y su email es " + mailPepa);
-                break;
-
-                case "0":
-                    alert("Hasta la próxima, te esperamos!");
-                break;
-
-                default:
-                    alert("Opción no válida, por favor vuelva a intentarlo");
-                break;
+                    cantidad = parseInt (prompt("¿Cuántas piedritas para gatos desea llevar?")); 
+                    alert("Se agregaron " + cantidad + " piedritas para gatos al carrito");
+                    if (resultado <= cantidad) {
+                        total += (cantidad * piedritas.precio);
+                        alert("El valor de su carrito es de $" + total);
+                    }
+                break;    
+                case "3":
+                    cantidad = parseInt (prompt("¿Cuántas camas para perros desea llevar?")); 
+                    alert("Se agregaron " + cantidad + " camas de perro al carrito");
+                    if (resultado <= cantidad) {
+                        total += (cantidad * camas.precio);
+                        alert("El valor de su carrito es de $" + total);
+                    }
+                break;      
+                case "4":
+                    cantidad = parseInt (prompt("¿Cuántos comederos desea llevar?")); 
+                    alert("Se agregaron " + cantidad + " comederos al carrito");
+                    if (resultado <= cantidad) {
+                        total += (cantidad * comederos.precio);
+                        alert("El valor de su carrito es de $" + total);
+                    }
+                break;    
+                default: alert("Producto no disponible");
             }
-            break;
-
-            case "2":
-                let gatoAdoptado= prompt("Ellos estan esperando un hogar: \n 1- Pelu hembra adulta \n 2 - Tito - macho bebe \n Ingresa el número que le corresponde para adoptarlo o 0 para salir");
-
-                switch (gatoAdoptado){
-                    case "1":
-                        alert("Gracias! Nos vamos a comunicar con vos para completar el formulario y terminar la adopción");
-                        let adoptantePelu=prompt("Por favor indicanos tu nombre");
-                        let mailPelu= prompt("Por favor ingresa tu emal");
-                        alert("En minutos te llegará el formulario al mail " + mailPelu);
-                        console.log( "El adoptante es " + adoptantePelu + " y su email es " + mailPelu);
-                        
-                    break;
-
-                    case "2":
-                        alert("Gracias! Nos vamos a comunicar con vos para completar el formulario y terminar la adopción");
-                        let adoptanteTito=prompt("Por favor indicanos tu nombre");
-                        let mailTito= prompt("Por favor ingresa tu emal");
-                        alert("En minutos te llegará el formulario al mail " + mailTito);
-                        console.log( "El adoptante es " + adoptantetito + " y su email es " + mailTito);
             
-                    break;
+        }
 
-                    case "0":
-                        alert("Hasta la próxima, te esperamos!");
-                        break;
+        case "2":
+            let buscar = prompt("Ingresa el nombre del producto");
 
-                    default:
-                        alert("Opción no válida, por favor vuelva a intentarlo");
-                        break;
-                }
+            const filtrado= filtrarPorNombre (productos, buscar);
+
+            filtrarPorNombre();
+            console.log(filtrado);
             break;
 
-            default:
-                alert("Opción no válida, por favor vuelva a intentarlo");
+        case "0":
+            alert("Hasta la próxima, te esperamos!");
             break;
-        
+
+        default:
+            alert("Opción no válida, por favor vuelva a intentarlo");
+            break;
+    }
+
+
 }
-}
-alert("Hasta la próxima, te esperamos!");
+
+
+
+
+
+
+
+
