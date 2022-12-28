@@ -1,98 +1,95 @@
-// Esta vez opte por hacer esta parte de la página que la vez pasada me quedo colgada y voy a intentar unir todo para la proxima pre entrega usando los elementos en la tienda y las fotos de las mascotas, mas visual y mas lindo
+let Usuario= prompt("Hola ingresa tu nombre para logearte");
+alert("Bienvenido/a " + Usuario);
 
-
-//Se que todavia no esta terminado y tiene errores, pero por si lo ves antes de que lo arregle/ termine prefiero que lo veas asi y me digas que es lo que esta mal o le falta 
-
-
-function Producto ( nombre, precio, stock) {
-        this.nombre = nombre;
-        this.precio = parseFloat (precio);
-        this.stock = parseFloat (stock);
-}
-
-function filtrarPorNombre (arr, filtro){
-    return arr.filter((productos) =>{
-        return productos.nombre.includes(filtro);
-    });
-}
-
-
-const productos = [ 
-    {nombre: "Collares", precio: 1600, stock: 50},
-    {nombre: "Piedritas para gato", precio: 900, stock: 60},
-    {nombre: "Camas para perros", precio: 4200, stock: 20},
-    {nombre: "Comederos", precio: 1400, stock: 26},
+const Mascotas = [
+    { id: 1, nombre: "tito", edad: "cachorro", genero: "macho", tipo: "perro"},
+    { id: 2, nombre: "juana", edad: "adulto", genero: "hembra", tipo: "perro"},
+    { id: 3, nombre: "roco", edad: "adulto mayor", genero: "macho", tipo: "perro"},
+    { id: 4, nombre: "pelusa", edad: "cachorro", genero: "hembra", tipo: "gato"},
+    { id: 5, nombre: "luna", edad: "adulto", genero: "hembra", tipo: "gato"},
+    { id: 6, nombre: "atom", edad: "cachorro", genero: "macho", tipo: "gato"},
 ];
+console.table(Mascotas);
+
+function agregar (id, nombre, edad, genero, tipo){
+    this.id = id;
+   this.nombre = nombre;
+   this.edad = edad;
+   this.genero = genero;
+   this.tipo = tipo;
+}
 
 
-let index= prompt ("¡Hola, Bienvenido a PawMatch! \n ¿Qué le gustaría realizar? Ingresá la opción que corresponda \n 1 - Ver productos \n 2 - Buscar un producto \n 0 - Salir");
+let index= prompt ("¡Hola, Bienvenido a PawMatch! \n ¿Qué le gustaría realizar? Ingresá la opción que corresponda \n 1 - Adoptar una mascota \n 2 - Buscar una mascota \n 3 - Publicar una mascota \n 0 - Salir");
 
-while (index != "0") { 
+while (index != "0"){
 
-    switch (index) {
+    switch(index){
+
         case "1": 
-        let tienda= prompt(" 1 - Collares $1600 \n 2 - Piedritas para gato $900 \n 3- Camas para perros $4200 \n 4- Comederos $1400 \n  Ingresa el número que corresponde al producto o 0 para salir");
 
-        while (tienda !="0"){
-            switch (tienda){
-                case "1":
-                    cantidad = parseInt (prompt("¿Cuántos collares desea llevar?")); 
-                    alert("Se agregaron " + cantidad + " collares al carrito");
-                    if (resultado <= cantidad) {
-                        total += (cantidad * collares.precio);
-                        alert("El valor de su carrito es de $" + total);
-                    }
-                break;  
-                case "2":
-                    cantidad = parseInt (prompt("¿Cuántas piedritas para gatos desea llevar?")); 
-                    alert("Se agregaron " + cantidad + " piedritas para gatos al carrito");
-                    if (resultado <= cantidad) {
-                        total += (cantidad * piedritas.precio);
-                        alert("El valor de su carrito es de $" + total);
-                    }
-                break;    
-                case "3":
-                    cantidad = parseInt (prompt("¿Cuántas camas para perros desea llevar?")); 
-                    alert("Se agregaron " + cantidad + " camas de perro al carrito");
-                    if (resultado <= cantidad) {
-                        total += (cantidad * camas.precio);
-                        alert("El valor de su carrito es de $" + total);
-                    }
-                break;      
-                case "4":
-                    cantidad = parseInt (prompt("¿Cuántos comederos desea llevar?")); 
-                    alert("Se agregaron " + cantidad + " comederos al carrito");
-                    if (resultado <= cantidad) {
-                        total += (cantidad * comederos.precio);
-                        alert("El valor de su carrito es de $" + total);
-                    }
-                break;    
-                default: alert("Producto no disponible");
-            }
+            alert("Ellos son los que estan esperando un hogar: \n Tito: Perro cachorro \n Juana: Perra adulta \n Roco: Perro adulto mayor \n Pelusa: Gata cachorra \n Luna: Gata adulta \n Atom: Gato cachorro");
+
+            let adoptado=alert(prompt("Ingresa el nombre correspondiente a la mascota que deseas adoptar en minúscula \n 0 - Salir"));
+
+            if (adoptado != "0"){
+
+                alert("Gracias por adoptar! Nos estaremos comunicando para finalizar la adopción, por favor a continuación completa los datos")
+
+                let adoptante=prompt("Por favor indicanos tu nombre");
+
+                let mailadoptante= prompt("Por favor ingresa tu emal");
+
+                alert("En minutos te llegará el formulario al mail " + mailadoptante);
+
+                console.log( "El adoptante es " + adoptante + " y su email es " + mailadoptante);
             
-        }
-
-        case "2":
-            let buscar = prompt("Ingresa el nombre del producto");
-
-            const filtrado= filtrarPorNombre (productos, buscar);
-
-            filtrarPorNombre();
-            console.log(filtrado);
             break;
+
+            } else {
+                alert("Hasta la próxima, te esperamos!");
+            }
+        
+        break;
+
+        case "2": 
+
+            let buscar= prompt("Ingresa que estás buscando \n Nosotros te ayudamos, las palabras clave pueden ser Perro, Gato, Cachorro, Adulto, Adulto mayor, Hembra, Macho o si buscas a tu mascota, su nombre, por favor ingresa la palabra en minúsculas");
+
+            const resultado = Mascotas.filter ((el) =>
+            el.includes(buscar))
+
+            console.log("Estos son los resultados de tu búsqueda " + resultado);
+
+        break;
+
+        case "3":
+
+            let nombreNuevaMascota= prompt("Ingrese el nombre de la mascota \n En caso de no tener o no saberlo indíquele uno");
+            let edadNuevaMascota= prompt("Ingrese si la mascota es cachorro, adulto o adulto mayor \n Escriba la opcion que corresponde en minúscula");
+            let generoNuevaMascota= prompt("Ingrese si la mascota es hembra o macho \n Escriba la opcion que corresponde en minúscula");
+            let tipoNuevaMascota= prompt("Ingrese si la mascota es gato o perro \n Escriba la opcion que corresponde en minúscula");
+
+            const publicado= [nombreNuevaMascota,edadNuevaMascota, generoNuevaMascota, tipoNuevaMascota];
+            Mascotas.push(publicado);
+
+            alert("Perfecto, la mascota " + nombreNuevaMascota + " " + edadNuevaMascota + " " + generoNuevaMascota + " " + tipoNuevaMascota + " fue publicada con éxito, ante cualquier novedad nos estaremos comunicando, por favor a continuación completa los datos");
+            let contacto=prompt("Por favor indicanos tu nombre");
+            let mailcontacto= prompt("Por favor ingresa tu emal");
+            console.log( "El contacto es " + contacto + " y su email es " + mailcontacto);
+        
+        break;
 
         case "0":
             alert("Hasta la próxima, te esperamos!");
-            break;
+        break;
 
         default:
             alert("Opción no válida, por favor vuelva a intentarlo");
-            break;
+        break;
     }
 
-
 }
-
 
 
 
